@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +43,7 @@ public class StudentService {
 		studentRepository.deleteById(studentId);
 	}
 
+	@Transactional
 	public void updateStudent(Long id, String name, String email) {
 
 		Student student = studentRepository.findById(id)
@@ -55,6 +58,7 @@ public class StudentService {
 			if (studentOptional.isPresent()) {
 				throw new IllegalStateException("email is taken");
 			}
+			student.setEmail(email);
 		}
 
 	}
