@@ -1,2 +1,3 @@
 **/.idea/
 learn/src/main/resources/application.properties
+jdbc/src/main/resources/static/.DS_Store
