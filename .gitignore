@@ -1,3 +1,4 @@
 **/.idea/
 learn/src/main/resources/application.properties
 jdbc/src/main/resources/static/.DS_Store
+jdbc/src/main/resources/application.yml
