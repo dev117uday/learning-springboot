@@ -8,6 +8,9 @@ import com.demo.redis.repository.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 @RestController
 @RequestMapping("/product")
+@EnableCaching
 public class RedisApplication {
 
 	@Autowired
@@ -40,11 +44,13 @@ public class RedisApplication {
 	}
 
 	@GetMapping("/{id}")
+	@Cacheable( key = "#id", value = "Product", unless = "#result.price>1000" )
 	public Object findProduct(@PathVariable int id) {
 		return productDao.findProductById(id);
 	}
 
 	@DeleteMapping("/{id}")
+	@CacheEvict(key = "#id", value = "Product")
 	public Boolean removeProduct(@PathVariable int id) {
 		return productDao.deleteProduct(id);
 	}
