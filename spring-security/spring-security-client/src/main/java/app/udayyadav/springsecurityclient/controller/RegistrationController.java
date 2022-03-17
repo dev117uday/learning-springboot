@@ -86,5 +86,18 @@ public class RegistrationController {
         return "reset token sent";
     }
 
+    @PostMapping("/changePassword")
+    public String changePassword(@RequestBody PasswordModel passwordModel) {
+        User user = userService.findUserByEmail(passwordModel.getEmail());
+        if(!userService.checkIfValidOldPassword(user,passwordModel.getOldPassword())) {
+            return "invalid old password";
+        }
+
+        // save new passsword method
+        userService.changePassword(user, passwordModel.getNewPassword());
+        return "password changed successfully";
+
+    }
+
 
 }
