@@ -4,6 +4,8 @@ import app.udayyadav.springsecurityclient.entity.User;
 import app.udayyadav.springsecurityclient.entity.VerificationToken;
 import app.udayyadav.springsecurityclient.model.UserModel;
 
+import java.util.Optional;
+
 public interface UserService {
     User registerUser(UserModel userModel);
 
@@ -12,4 +14,14 @@ public interface UserService {
     String validateVerificationToken(String token);
 
     VerificationToken generateNewVerificationToken(String oldToken);
+
+    User findUserByEmail(String email);
+
+    void createPasswordResetTokenForUser(User user, String token);
+
+    String validatePasswordResetToken(String token);
+
+    Optional<User> getUserByPasswordResetToken(String token);
+
+    void changePassword(User user, String newPassword);
 }
