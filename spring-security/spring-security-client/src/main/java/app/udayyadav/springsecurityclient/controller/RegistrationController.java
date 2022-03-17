@@ -7,7 +7,6 @@ import app.udayyadav.springsecurityclient.model.PasswordModel;
 import app.udayyadav.springsecurityclient.model.UserModel;
 import app.udayyadav.springsecurityclient.service.AuthService;
 import app.udayyadav.springsecurityclient.service.UserService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +16,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@Slf4j
 public class RegistrationController {
 
     private final UserService userService;
@@ -76,7 +74,6 @@ public class RegistrationController {
     @PostMapping("/resetPassword")
     public String resetPassword(@RequestBody PasswordModel passwordModel, HttpServletRequest request) {
         User user = userService.findUserByEmail(passwordModel.getEmail());
-        String url = "";
 
         if (user != null) {
             String token = UUID.randomUUID().toString();

@@ -98,7 +98,6 @@ public class UserServiceImpl implements UserService {
             return "invalid token";
         }
 
-        User user = passwordResetToken.getUser();
         Calendar calendar = Calendar.getInstance();
 
         if ((passwordResetToken.getExpirationTime().getTime() - calendar.getTime().getTime()) <= 0) {
