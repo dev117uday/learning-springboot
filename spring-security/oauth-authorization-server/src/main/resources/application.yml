@@ -2,6 +2,30 @@ server:
   port: 8001
 
 spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          api-client-oidc:
+            provider: spring
+            client-id: api-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8000/login/oauth2/code/{registrationId}"
+            scope: openid
+            client-name: api-client-oidc
+          api-client-authorization-code:
+            provider: spring
+            client-id: api-client
+            client-secret: secret
+            authorization-grant-gype: authorization_code
+            redirect-uri: "http://localhost:8000/unauthorized"
+            scope: api.read
+            client-name: api-client-authorization-code
+        provider:
+          spring:
+            issuer-uri: http://localhost:9000
+
   datasource:
     url: jdbc:postgresql://localhost:5432/springssdb
     username: springssapp
