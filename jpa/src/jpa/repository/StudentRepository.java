@@ -1,4 +1,4 @@
-package com.example.jpa.repository;
+package com.example.jpa2.repository;
 
 import java.util.List;
 

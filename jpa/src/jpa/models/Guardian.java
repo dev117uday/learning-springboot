@@ -1,4 +1,4 @@
-package com.example.jpa.entity;
+package com.example.jpa2.entity;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
