@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="header :: myheader"></div>
+    <script src="https://unpkg.com/vue@3"></script>
+
+</head>
+<body>
+<div class="container mt-3">
+    <h1>List of All Employees</h1>
+
+    <table class="table container">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Email</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${employeeList}">
+            <td th:text="${employee.empId}" scope="row"></td>
+            <td th:text="${employee.firstName}" scope="row"></td>
+            <td th:text="${employee.lastName}" scope="row"></td>
+            <td th:text="${employee.email}" scope="row"></td>
+            <td scope="row">
+                <a th:href="@{/showFormForUpdate/{id}(id=${employee.empId})}">
+                    <button class="btn btn-primary"> Update </button>
+                </a>
+                |
+                <a th:href="@{/deleteEmpl/{id}(id=${employee.empId})}" method="DELETE">
+                    <button class="btn btn-danger"> Delete </button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/saveEmpForm}">
+        <button class="btn btn-primary"> Add employee</button>
+    </a>
+
+    <div th:if="${true}">This Element will be visible</div>
+
+    <div id="app">{{ message }}</div>
+
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    message: 'Hello Vue!'
+                }
+            }
+        }).mount('#app')
+    </script>
+
+
+</div>
+</body>
+</html>

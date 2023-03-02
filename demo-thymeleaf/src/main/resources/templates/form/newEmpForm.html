@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="header :: myheader"></div>
+</head>
+<body>
+<div class="container mt-3">
+    <h1>Save New Employee</h1>
+    <div class="container mt-3">
+        <form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="POST">
+            <div class="mb-3">
+                <label class="form-label">First Name</label>
+                <input th:field="*{firstName}" type="text" class="form-control" placeholder="Enter First Name">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Last Name</label>
+                <input th:field="*{lastName}" type="text" class="form-control" placeholder="Enter Last Name">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email </label>
+                <input th:field="*{email}" type="text" class="form-control" placeholder="Enter Email">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
