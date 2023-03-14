@@ -20,9 +20,9 @@ public class ProjectSecurityConfig {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                        .authorizeHttpRequests()
-                        .requestMatchers("/myAccount","/myBalance","/myLoans","/myCards","/").authenticated()
-                        .requestMatchers("/notices","/contact","/register").permitAll()
+                .authorizeHttpRequests()
+                .requestMatchers("/myAccount", "/myBalance", "/myLoans", "/myCards", "/").authenticated()
+                .requestMatchers("/notices", "/contact", "/register").permitAll()
                 .and().formLogin()
                 .and().httpBasic();
         return http.build();
@@ -41,9 +41,11 @@ public class ProjectSecurityConfig {
 
     /*@Bean
     public InMemoryUserDetailsManager userDetailsService() {
-        *//*Approach 1 where we use withDefaultPasswordEncoder() method
+
+      *//*Approach 1 where we use withDefaultPasswordEncoder() method
 		while creating the user details*//*
-        *//*UserDetails admin = User.withDefaultPasswordEncoder()
+
+     *//*UserDetails admin = User.withDefaultPasswordEncoder()
                 .username("admin")
                 .password("12345")
                 .authorities("admin")
@@ -55,8 +57,9 @@ public class ProjectSecurityConfig {
                 .build();
         return new InMemoryUserDetailsManager(admin, user);*//*
 
-         *//*Approach 2 where we use NoOpPasswordEncoder Bean
+     *//*Approach 2 where we use NoOpPasswordEncoder Bean
 		while creating the user details*//*
+
         UserDetails admin = User.withUsername("admin")
                 .password("12345")
                 .authorities("admin")

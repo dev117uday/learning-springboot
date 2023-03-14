@@ -27,12 +27,12 @@ public class EazyBankUserDetails implements UserDetailsService {
         List<Customer> customer = customerRepository.findByEmail(username);
         if (customer.size() == 0) {
             throw new UsernameNotFoundException("User details not found for the user : " + username);
-        } else{
+        } else {
             password = customer.get(0).getPwd();
             authorities = new ArrayList<>();
             authorities.add(new SimpleGrantedAuthority(customer.get(0).getRole()));
         }
-        return new User(username,password,authorities);
+        return new User(username, password, authorities);
     }
 
 }
