@@ -22,6 +22,7 @@ public class EazyBankUserDetails implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println("load user by username");
         String password;
         List<GrantedAuthority> authorities;
         List<Customer> customer = customerRepository.findByEmail(username);
