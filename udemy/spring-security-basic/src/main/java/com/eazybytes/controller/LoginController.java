@@ -21,13 +21,11 @@ public class LoginController {
 
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody Customer customer) {
-        Customer savedCustomer;
-        ResponseEntity<String> response = null;
+        Customer savedCustomer = null;
+        ResponseEntity response = null;
         try {
-
             String hashPwd = passwordEncoder.encode(customer.getPwd());
             customer.setPwd(hashPwd);
-
             savedCustomer = customerRepository.save(customer);
             if (savedCustomer.getId() > 0) {
                 response = ResponseEntity
@@ -37,9 +35,10 @@ public class LoginController {
         } catch (Exception ex) {
             response = ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("An exception occurred due to " + ex.getMessage());
+                    .body("An exception occured due to " + ex.getMessage());
         }
         return response;
     }
+
 
 }
