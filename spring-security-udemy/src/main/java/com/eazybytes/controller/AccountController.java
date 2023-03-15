@@ -11,4 +11,9 @@ public class AccountController {
         return "Here are the account details from the DB";
     }
 
+    @GetMapping("/")
+    public String mainHandler( ) {
+        return " ";
+    }
+
 }
