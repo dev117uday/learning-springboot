@@ -1,5 +1,6 @@
 package one.udayyadav.springtips;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -9,6 +10,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @SpringBootApplication
 @EnableConfigurationProperties({AppProperties.class, AppPropertiesRecord.class})
+@Slf4j
 public class SpringTipsApplication implements CommandLineRunner {
 
     @Value("${app.version}")
@@ -25,10 +27,13 @@ public class SpringTipsApplication implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
+
+        log.debug("something like this is possible when level.root is set to debug");
+
         System.out.println("app version : " + appVersion);
         System.out.println("app prop : " + appProperties.getVersion());
         System.out.println("app ftp user :  " + appProperties.getFtp().getUsername());
-        System.out.printf("app record :: app ftp user || " + appPropertiesRecord.version() + " :: " + appPropertiesRecord.ftp().username());
+        System.out.println("app record :: app ftp user || " + appPropertiesRecord.version() + " :: " + appPropertiesRecord.ftp().username());
     }
 }
